@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+	 body{
+	 	background-image:url(https://img.freepik.com/premium-photo/abstract-white-gray-background-abstract-clean-background-blurred-patterns-light-pale-background-abstract-pale-geometric-pattern_39704-4170.jpg) ;
+	 	background-size: cover;
+	 }
+	 #username{
+			padding: .7%;
+			border:dotted;
+			border-color: black;
+			background-color:lightgrey;
+		}
+	#password{
+			padding: .7%;
+			border:dotted;
+			border-color: black;
+			background-color:lightgrey;}
+		#btn{
+			padding: .2%;
+			border: double;
+			border-color: black;
+			border-radius:35%;
+	</style>
+
+</head>
+<body><center>
+	<p><input  placeholder="enter name" Id="username"/></p>
+	<input placeholder="enter password" Id="password">
+	<p><button Id="btn" onclick="submit()">submit</button></p></center>
+	<script type="text/javascript">
+		function submit(){
+			var username=document.getElementById("username").value
+			var password=document.getElementById("password").value
+			console.log(username)
+			console.log(password)
+			fetch("http://localhost:3000/newData",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			body:JSON.stringify({name:username,password})
+		})
+		.then((res)=>{
+			console.log(res)
+			if(res.status===200)
+				alert("sen sucessfully")
+		})
+		.catch((err)=>{
+			alert(error)
+		})
+			}
+	
+	</script>
+</body>
+</html>
