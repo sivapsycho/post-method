@@ -11,39 +11,62 @@
 	 }
 	 #username{
 			padding: .7%;
-			border:dotted;
+			border:none;
 			border-color: black;
 			background-color:lightgrey;
+			border-radius:25px;
 		}
 	#password{
 			padding: .7%;
-			border:dotted;
+			border:none;
 			border-color: black;
-			background-color:lightgrey;}
+			background-color:lightgrey;
+		border-radius:25px;}
 		#btn{
 			padding: .2%;
 			border: double;
 			border-color: black;
-			border-radius:35%;
+			border-radius:25px;
+		}
+
 	</style>
 
 </head>
 <body><center>
 	<p><input  placeholder="enter name" Id="username"/></p>
-	<input placeholder="enter password" Id="password">
-	<p><button Id="btn" onclick="submit()">submit</button></p></center>
+	<input placeholder="enter password" Id="password"><br>
+	<select Id="cars" name="cars" id="cars">
+		<option>select car</option>
+		<option value="volvo">Volvo</option>
+		<option value="benz">Benz</option>
+		<option value="toyota">Toyota</option>
+		<option value="range rover">Range rover</option>
+		<option value="Mahindra">Mahindra</option>
+    </select><br> 
+    <p>
+    <input type="radio" id="male" name="gender" value="male"/>Male
+    <input type="radio" id="female" name="gender" value="female"/>Female</p>
+	<button Id="btn" onclick="submit()">submit</button></center>
 	<script type="text/javascript">
 		function submit(){
 			var username=document.getElementById("username").value
 			var password=document.getElementById("password").value
+			var cars=document.getElementById("cars").value
+			var gmale=document.getElementById("male").checked
+			var gfemale=document.getElementById("female").checked
+			if(gmale==true) var gender="male"
+				else var gender="female"
+
 			console.log(username)
+			console.log(gender)
 			console.log(password)
+			console.log(cars)
 			fetch("http://localhost:3000/newData",{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"
 			},
-			body:JSON.stringify({name:username,password})
+			body:JSON.stringify({name:username,password,cars})
 		})
 		.then((res)=>{
 			console.log(res)
@@ -54,7 +77,6 @@
 			alert(error)
 		})
 			}
-	
-	</script>
+</script>
 </body>
 </html>

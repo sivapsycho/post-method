@@ -17,7 +17,7 @@ app.get("/",(req,res)=>{
 })
 
 app.post("/newData",(req,res)=>{
-	const {username,password}=req.body
+	const {username,password,cars}=req.body
 	console.log(req.body)
 	res.send("respond send sucessfully")
 })
